@@ -6,18 +6,20 @@ const Trip = function() {}
 Trip.countByMonth = (start_date, end_date, cb) => {
   // check if filtering on date range
   if (start_date && end_date) {
-    var oquery = 'select COUNT(*) as trip_count, MONTHNAME(starttime) as month ' +
-            'from demo.trips ' +
-            'where starttime between ? and ? ' +
-            'group by MONTH(starttime), MONTHNAME(starttime) ' +
-            'order by MONTH(starttime);'
-    var mquery = 'select SUM(trip_count) as trip_count, MONTHNAME(starttime) as month ' +
-            'from demo.COUNT_BY_DAY_MVW ' +
-            'where starttime between ? and ? ' +
-            'group by MONTH(starttime), MONTHNAME(starttime) ' +
-            'order by MONTH(starttime);'
+    var query = 'select COUNT(*) as trip_count, MONTHNAME(starttime) as month ' +
+      'from demo.trips ' +
+      'where starttime between ? and ? ' +
+      'group by MONTH(starttime), MONTHNAME(starttime) ' +
+      'order by MONTH(starttime);'
+    if ("MATERIALIZED" in process.env) {
+      query = 'select SUM(trip_count) as trip_count, MONTHNAME(starttime) as month ' +
+        'from demo.COUNT_BY_DAY_MVW ' +
+        'where starttime between ? and ? ' +
+        'group by MONTH(starttime), MONTHNAME(starttime) ' +
+        'order by MONTH(starttime);'
+    }
     db.execute({
-      sqlText: oquery,
+      sqlText: query,
       binds: [start_date, end_date],
       complete: (err, stmt, rows) => {
         if (err) throw err;
@@ -25,13 +27,15 @@ Trip.countByMonth = (start_date, end_date, cb) => {
       }
     });
   } else {
-    var oquery = 'select COUNT(*) as trip_count, MONTHNAME(starttime) as month ' +
-            'from demo.trips ' +
-            'group by MONTH(starttime), MONTHNAME(starttime) ' +
-            'order by MONTH(starttime);'
-    var mquery = 'select * from demo.COUNT_BY_MONTH_MVW order by starttime;'
+    var query = 'select COUNT(*) as trip_count, MONTHNAME(starttime) as month ' +
+      'from demo.trips ' +
+      'group by MONTH(starttime), MONTHNAME(starttime) ' +
+      'order by MONTH(starttime);'
+      if ("MATERIALIZED" in process.env) {
+        query = 'select * from demo.COUNT_BY_MONTH_MVW order by starttime;'
+      }
     db.execute({
-      sqlText: oquery,
+      sqlText: query,
       complete: (err, stmt, rows) => {
         if (err) throw err;
         cb(null, rows);
