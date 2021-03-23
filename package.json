@@ -1,0 +1,25 @@
+{
+    "name": "snowflake-sedemo-dataapps",
+    "version": "1.0.0",
+    "description": "A Snowflake demo showcasing a simple data app use case",
+    "author": "Craig Pentrack <craig.pentrack@snowflake.com>",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+    },
+    "dependencies": {
+        "artillery": "^1.6.1",
+        "async": "^3.2.0",
+        "commander": "^5.1.0",
+        "express": "^4.17.1",
+        "moment": "^2.27.0",
+        "morgan": "^1.10.0",
+        "snowflake-sdk": "^1.5.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    },
+    "engines": {
+        "node": ">= 12.18.0"
+    }
+}

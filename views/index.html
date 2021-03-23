@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Citibike Web</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  body {font-family: "Roboto", sans-serif}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+<body>
+  <!-- Navbar -->
+  <div class="w3-top">
+  <div class="w3-bar w3-blue w3-card">
+      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-indigo">HOME</a>
+      <button id="randomizeButton" class="w3-bar-item w3-padding-large w3-button w3-hide-small w3-right w3-hover-indigo">RANDOMIZE DATES</button>
+  </div>
+  </div>
+  <!-- Content -->
+  <div class="w3-content" style="max-width:2000px;margin-top:46px">
+    <!-- Date Range -->
+    <div class="w3-light-grey">
+      <div class="w3-container w3-content w3-padding" style="max-width:800px">
+        <form id="customDatesForm" class="w3-right w3-opacity" onsubmit="return false;">
+          <label for="">Start Date:</label>
+          <input type="date" id="customStart" name="custom_start_date">
+          <label for="">End Date:</label>
+          <input type="date" id="customEnd" name="custom_end_date">
+          <input type="submit" value="Update">
+        </form>
+      </div>
+    </div>
+    <!-- Trips Section -->
+    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="trips">
+        <h2>CITIBIKE TRIPS</h2>
+        <canvas id="tripsMonthly"></canvas>
+        <div class="w3-row w3-padding-32">
+        <canvas id="tripsDayOfWeek"></canvas>
+    </div>
+    <!-- Weather Section -->
+    <div class="w3-sand" id="weather">
+    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="trips">
+        <h2>WEATHER'S IMPACT ON TRIPS</h2>
+        <canvas id="weatherTrips"></canvas>
+    </div>
+    </div>
+  </div>
+</body>
+<!-- get data from API, and load charts -->
+<script src="http://localhost:3000/js/homepage.js" type="text/javascript"></script>
+</html>
