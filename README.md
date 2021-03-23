@@ -12,7 +12,7 @@ There are instructions below for setting up the application and running the demo
 
 ## Prerequisites
 
-This demo assumes you have set up the citibike v3 demo (set to **normal** size).  In particular, this demo requires that you have already run the **load trips** and **get weather** core vignette SQL scripts.  
+You will need to have the trips and weather data used in this demo as well as the user created for authentication. The sql script to create the warehouse, database, schema, user, and import the data is in the setup folder. There is also a helper bash script in the same folder to create a private key pair for authentication. You will need to modify the sql script to use your users public key.
 
 ## Installing Citibike Web Application
 - Download [node.js](https://nodejs.org/en/download/)
@@ -29,14 +29,6 @@ The application backend connects to a Snowflake instance when the server is star
   - For example, `cp config-template.js config.js`
 - Edit the `config.js` with your demo instance details
   - The snowflake user you configure must have select privileges on the citibike tables (specifically the citibike.demo.trips table).  The snowflake user must also be able to create the weather table in the citibike.demo schema and create a warehouse, which is done in the next section.  For simplicity, I tend to use `john`, the user from the core citibike demo; however, in production you'd wouldn't want to do this!  A future extension here could be to use a service user for the application.
-
-## Snowflake Warehouse for Citibike Website Workloads
-
-This demo runs all Snowflake queries in a single warehouse. To create that warehouse:
-- Run `node scripts/setup/create_web_wh.js`
-
-To leverage the result cache for the weather-related query, this application has to use a table instead of the trips_weather_vw.  The script below creates the appropriate table:
-- Run `node scripts/setup/create_weather_table.js`
 
 # Running The Demo
 
@@ -67,37 +59,3 @@ Current tests include:
 
 - The created warehouse is set to a small, with multi-clustering between 1 and 5.  Feel free to increase the warehouse size around if you'd like to showcase snappier performance.  I find after the cache warms, small works fine and helps limit costs for SF! 
 
-
-
-MATERIALIZED EXTENSION:
-
-CREATE OR REPLACE MATERIALIZED VIEW COUNT_BY_DAY_MVW AS
-select COUNT(*) as trip_count, date_trunc('DAY', starttime) as starttime from demo.trips group by date_trunc('DAY', starttime);
-
-CREATE OR REPLACE MATERIALIZED VIEW COUNT_BY_MONTH_MVW AS
-select COUNT(*) as trip_count, MONTHNAME(starttime) as month, MIN(starttime) as starttime from demo.trips group by month;
-
-BEFORE MATERIALIZED (MAX 5)
-  Response time (msec):
-    min: 166.3
-    max: 7477.1
-    median: 544.4
-    p95: 1645.6
-    p99: 3469.1
-
-    var mquery = 'select SUM(trip_count) as trip_count, MONTHNAME(starttime) as month ' +
-            'from demo.COUNT_BY_DAY_MVW ' +
-            'where starttime between ? and ? ' +
-            'group by MONTH(starttime), MONTHNAME(starttime) ' +
-            'order by MONTH(starttime);'
-
-
-    var mquery = 'select * from demo.COUNT_BY_MONTH_MVW order by starttime;'
-
-MATERIALIZED (MAX 3)
-  Response time (msec):
-    min: 172.8
-    max: 2333.3
-    median: 287.1
-    p95: 703.8
-    p99: 1340.2
