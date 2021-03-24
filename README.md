@@ -12,7 +12,12 @@ There are instructions below for setting up the application and running the demo
 
 ## Prerequisites
 
-You will need to have the trips and weather data used in this demo as well as the user created for authentication. The sql script to create the warehouse, database, schema, user, and import the data is in the setup folder. There is also a helper bash script in the same folder to create a private key pair for authentication. You will need to modify the sql script to use your users public key.
+- A Snowflake enterprise account in AWS us-west-2 
+- Trips and Data loaded 
+- User created for authentication
+
+You can run the helper bash script in the setup folder to create a private key pair for authentication (needed when creating a user).
+The sql script to create the warehouse, database, schema, user, and import the data is in the setup folder.
 
 ## Installing Citibike Web Application
 - Download [node.js](https://nodejs.org/en/download/)
