@@ -171,7 +171,7 @@ function addDatesToQuerystring(querystring, dates) {
 
 // make call to api and udpate client for new day of week trips
 function updateDayOfWeekTripsChart(dates) {
-  var dayOfWeekUrl = "http://localhost:3000/trips/day_of_week";
+  var dayOfWeekUrl = "/trips/day_of_week";
   var dayOfWeekUrl = addDatesToQuerystring(dayOfWeekUrl, dates);
 
   $.ajax({
@@ -197,7 +197,7 @@ function updateDayOfWeekTripsChart(dates) {
 
 // make call to api and udpate client for monthly trips
 function updateMonthlyTripsChart(dates) {
-  var monthlyUrl = "http://localhost:3000/trips/monthly";
+  var monthlyUrl = "/trips/monthly";
   var monthlyUrl = addDatesToQuerystring(monthlyUrl, dates);
 
   $.ajax({
@@ -222,7 +222,7 @@ function updateMonthlyTripsChart(dates) {
 }
 
 function updateTemperatureChart(dates) {
-  var tempUrl = "http://localhost:3000/trips/temperature";
+  var tempUrl = "/trips/temperature";
   var tempUrl = addDatesToQuerystring(tempUrl, dates);
 
   $.ajax({
