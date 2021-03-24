@@ -7,9 +7,9 @@
 var config = {
   snowflake_account: '<account>',
   snowflake_user: '<user>',
-  snowflake_password: '<password>',
-  snowflake_database: 'CITIBIKE',
+  snowflake_private_key: "<full path to your users private key>",
+  snowflake_database: 'DATA_APPS_DEMO',
   snowflake_schema: 'DEMO',
-  snowflake_warehouse: 'WEB_SMALL_WH'
+  snowflake_warehouse: 'DATA_APPS_DEMO'
 }
 module.exports = config;
