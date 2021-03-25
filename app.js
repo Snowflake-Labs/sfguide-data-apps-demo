@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const app = express();
 app.use(express.json());
 app.use(morgan('dev'))
+app.use(timeout(5000));
 
 // static assets directory
 app.use(express.static(path.join(__dirname, 'static')));

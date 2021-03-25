@@ -22,8 +22,7 @@ Trip.countByMonth = (start_date, end_date, cb) => {
       sqlText: query,
       binds: [start_date, end_date],
       complete: (err, stmt, rows) => {
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   } else {
@@ -37,8 +36,7 @@ Trip.countByMonth = (start_date, end_date, cb) => {
     db.execute({
       sqlText: query,
       complete: (err, stmt, rows) => {
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   }
@@ -57,8 +55,7 @@ Trip.countByDayOfWeek = (start_date, end_date, cb) => {
       sqlText: query,
       binds: [start_date, end_date],
       complete: (err, stmt, rows) => {
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   } else {
@@ -69,8 +66,7 @@ Trip.countByDayOfWeek = (start_date, end_date, cb) => {
     db.execute({
       sqlText: query,
       complete: function(err, stmt, rows){
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   }
@@ -91,8 +87,7 @@ Trip.countByTemperature = (start_date, end_date, cb) => {
       sqlText: query,
       binds: [start_date, end_date],
       complete: (err, stmt, rows) => {
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   } else {
@@ -106,8 +101,7 @@ Trip.countByTemperature = (start_date, end_date, cb) => {
     db.execute({
       sqlText: query,
       complete: function(err, stmt, rows){
-        if (err) throw err;
-        cb(null, rows);
+        cb(err, rows);
       }
     });
   }

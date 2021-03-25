@@ -15,10 +15,6 @@ config:
       arrivalRate: 10
       rampTo: 100
       name: "Ramp up"
-    # run for 10 seconds with 100 arrivals every second
-    - duration: 10
-      arrivalRate: 100
-      name: "Sustained max load"
 scenarios:
   - flow:
     - get:
