@@ -2,12 +2,13 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const timeout = require('connect-timeout')
 
 // create express app, set up json parsing and logging
 const app = express();
+app.use(timeout('5s'));
 app.use(express.json());
 app.use(morgan('dev'))
-app.use(timeout(5000));
 
 // static assets directory
 app.use(express.static(path.join(__dirname, 'static')));
