@@ -1,16 +1,12 @@
 config:
   target: 'http://localhost:3000'
   phases:
-    # 1 user to start
-    # start 1 user arrival/second, linearly increase arrivals/second to 15/sec
-    # over 1 minute
     - duration: 60
       arrivalRate: 1
       rampTo: 15
       name: "Warm up"
-    # run for 60 seconds with 30 arrivals every second
     - duration: 60
-      arrivalRate: 30
+      arrivalRate: 15
       name: "Sustained max load"
 scenarios:
   - flow:

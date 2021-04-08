@@ -4,17 +4,13 @@ config:
     p95: 5000
     maxErrorRate: 0
   phases:
-    # 1 user to start
-    # increase by 1 user arrival per second (1, 2, 3, etc) up to 10 for 10 secs
-    - duration: 10
+    - duration: 60
       arrivalRate: 1
       rampTo: 10
       name: "Warm up"
-    # increase by 10 user arrivals per second (10, 20, 30, etc) up to 100 for 10 secs
-    - duration: 10
+    - duration: 60
       arrivalRate: 10
-      rampTo: 100
-      name: "Ramp up"
+      name: "Sustained load"
 scenarios:
   - flow:
     - get:
