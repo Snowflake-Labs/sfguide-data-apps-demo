@@ -12,6 +12,7 @@ Trip.countByMonth = (start_date, end_date, cb) => {
       'group by MONTH(starttime), MONTHNAME(starttime) ' +
       'order by MONTH(starttime);'
     if ("MATERIALIZED" in process.env) {
+      console.log("...using materialized view COUNT_BY_DAY_MVW");
       query = 'select SUM(trip_count) as trip_count, MONTHNAME(starttime) as month ' +
         'from demo.COUNT_BY_DAY_MVW ' +
         'where starttime between ? and ? ' +
@@ -31,6 +32,7 @@ Trip.countByMonth = (start_date, end_date, cb) => {
       'group by MONTH(starttime), MONTHNAME(starttime) ' +
       'order by MONTH(starttime);'
       if ("MATERIALIZED" in process.env) {
+        console.log("...using materialized view COUNT_BY_MONTH_MVW");
         query = 'select * from demo.COUNT_BY_MONTH_MVW order by starttime;'
       }
     db.execute({

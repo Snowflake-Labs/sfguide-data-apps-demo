@@ -6,7 +6,7 @@ const timeout = require('connect-timeout')
 
 // create express app, set up json parsing and logging
 const app = express();
-app.use(timeout('5s'));
+app.use(timeout('15s'));
 app.use(express.json());
 app.use(morgan('dev'))
 
