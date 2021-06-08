@@ -1,3 +1,5 @@
+## ➡️ Complete this end-to-end tutorial on [guides.snowflake.com](https://guides.snowflake.com/guide/data_app/)
+
 # Overview
 
 This project provides a Snowflake demo focused on Data Application workloads.
