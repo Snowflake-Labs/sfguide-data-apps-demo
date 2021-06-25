@@ -55,7 +55,7 @@ While it's easy to show the website will load quickly for a single user through 
 Current tests include:
 - `all.yaml`: hit all 3 api endpoints (good for demoing result cache)
   - At peak of the load test, we simulating 100 users hitting the website every second for 10 seconds.
-- `montly_random.yaml`: hit monthly trip counts api endpoint with random dates (good for demoing multi-clustering)
+- `monthly_random.yaml`: hit monthly trip counts api endpoint with random dates (good for demoing multi-clustering)
   - As this load test runs, the small warehouse will scale nicely over a little more than 2 minutes from 1 cluster to 4 clusters
   - If you turn off multi-clustering, queuing will build up
   - The random date range for this load test is limited to 1 year (~ 20M trips in date range).

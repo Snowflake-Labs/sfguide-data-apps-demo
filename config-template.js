@@ -7,9 +7,12 @@
 var config = {
   snowflake_account: '<account>',
   snowflake_user: '<user>',
-  snowflake_private_key: "<full path to your users private key>",
+  snowflake_private_key: `-----BEGIN RSA PRIVATE KEY-----
+  YOUR_PRIVATE_KEY_HERE_FOR_KEY_PAIR_AUTHN===
+  -----END RSA PRIVATE KEY-----`,
   snowflake_database: 'DATA_APPS_DEMO',
   snowflake_schema: 'DEMO',
-  snowflake_warehouse: 'DATA_APPS_DEMO'
+  snowflake_warehouse: 'DATA_APPS_DEMO',
+  pool_max: 100
 }
 module.exports = config;
