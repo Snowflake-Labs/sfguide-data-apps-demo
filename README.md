@@ -1,4 +1,4 @@
-## ➡️ Complete this end-to-end tutorial on [guides.snowflake.com](https://guides.snowflake.com/guide/data_app/)
+## ➡️ Complete this end-to-end tutorial on [quickstarts.snowflake.com](https://quickstarts.snowflake.com/guide/data_app/)
 
 # Overview
 
