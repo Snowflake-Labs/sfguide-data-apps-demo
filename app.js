@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const timeout = require('connect-timeout')
+const {PORT = 3000} = process.env
 
 // create express app, set up json parsing and logging
 const app = express();
@@ -36,6 +37,5 @@ app.get('/trips/temperature', getTripsByTemperature);
 
 // create server
 const server = http.createServer(app);
-const port = 3000;
-server.listen(port);
-console.debug('...server listening on port ' + port);
+server.listen(PORT);
+console.debug('...server listening on port ' + PORT);
