@@ -2,3 +2,5 @@ config.js
 .DS_Store
 package_modules
 node_modules
+.snowflake_demo_key
+snowflake.log

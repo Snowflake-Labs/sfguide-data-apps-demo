@@ -3,10 +3,10 @@ config:
   phases:
     - duration: 60
       arrivalRate: 1
-      rampTo: 15
+      rampTo: 25
       name: "Warm up"
     - duration: 60
-      arrivalRate: 15
+      arrivalRate: 25
       name: "Sustained max load"
 scenarios:
   - flow:
