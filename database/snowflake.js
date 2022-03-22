@@ -2,22 +2,30 @@ const snowflake = require('snowflake-sdk')
 const genericPool = require("generic-pool");
 const config = require('../config')
 const crypto = require('crypto')
+var fs = require('fs');
 
 const factory = {
   create: () => {
       return new Promise((resolve, reject) => {
+          
+          // Get the private key from the file as an object.
+          const privateKeyObject = crypto.createPrivateKey({
+            key: privateKeyFile,
+            format: 'pem',
+          });
+
+          // Extract the private key from the object as a PEM-encoded string.
+          var privateKey = privateKeyObject.export({
+            format: 'pem',
+            type: 'pkcs8'
+          });
+        
           // Create Connection
           const connection = snowflake.createConnection({
             account: config.snowflake_account,
             username: config.snowflake_user,
             authenticator: 'SNOWFLAKE_JWT',
-            privateKey: crypto.createPrivateKey({
-              key: config.snowflake_private_key,
-              format: 'pem'
-            }).export({
-              format: 'pem',
-              type: 'pkcs8'
-            }),
+            privateKey: privateKey,
             database: config.snowflake_database,
             warehouse: config.snowflake_warehouse,
             clientSessionKeepAlive: true
