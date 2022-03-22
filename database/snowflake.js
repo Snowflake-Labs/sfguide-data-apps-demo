@@ -9,6 +9,7 @@ const factory = {
       return new Promise((resolve, reject) => {
           
           // Get the private key from the file as an object.
+          var privateKeyFile = fs.readFileSync(config.snowflake_private_key);
           const privateKeyObject = crypto.createPrivateKey({
             key: privateKeyFile,
             format: 'pem',
