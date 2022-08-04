@@ -8,11 +8,12 @@ const factory = {
       return new Promise((resolve, reject) => {
           // Create Connection
           const connection = snowflake.createConnection({
+            timeout: 15 * 1000,
             account: config.snowflake_account,
             username: config.snowflake_user,
             authenticator: 'SNOWFLAKE_JWT',
             privateKey: crypto.createPrivateKey({
-              key: config.snowflake_private_key,
+              key: config.snowflake_private_key.trim(),
               format: 'pem'
             }).export({
               format: 'pem',
