@@ -17,7 +17,7 @@
         "moment": "^2.29.4",
         "morgan": "^1.10.0",
         "normalize-url": "^4.5.1",
-        "snowflake-sdk": "^1.6.12",
+        "snowflake-sdk": "^1.9.1",
         "underscore": "^1.13.4",
         "xmlhttprequest-ssl": "^1.6.3"
     },
