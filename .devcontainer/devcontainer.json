@@ -1,0 +1,28 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/miniconda
+{
+  "name": "Snowflake Demo Codespace",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  // It comes with openssl pre-installed
+  // "build": {
+  //   "context": "..",
+  //   "dockerfile": "Dockerfile"
+  // },
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [
+    3000 // npm start listens here
+  ],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "npm install && npm install -g artillery && cp config-template.js config.js",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "snowflake.snowflake-vsc"
+      ]
+    }
+  }
+}
